@@ -30,16 +30,17 @@ class ComicController extends Controller
     */
    public function store(Request $request)
    {
+      $new_comic = new Comic();
+
       $file_path = null;
       if($request->has('thumb')){
          $file_path = Storage::put('comics_thumbs', $request->thumb);
-      }
+         $new_comic->thumb = $file_path;
+      }      
       
-      $comic = new Comic();
-      $comic->title = $request->title;
-      $comic->price = $request->price;
-      $comic->thumb = $file_path;
-      $comic->save();
+      $new_comic->title = $request->title;
+      $new_comic->price = $request->price;      
+      $new_comic->save();
 
       return to_route('comics.index');
    }
