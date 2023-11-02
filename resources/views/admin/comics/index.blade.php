@@ -12,6 +12,7 @@
             <table class="table table-dark">
                 <thead>
                     <tr>
+                        <th scope="col">ID</th>
                         <th scope="col">Title</th>
                         <th scope="col">Description</th>
                         <th scope="col">Thumb</th>
@@ -27,16 +28,20 @@
                 <tbody>
                     @foreach ($comics as $comic)
                         <tr>
+                            <td>{{ $comic->id }}</td>
                             <td>{{ $comic->title }}</td>
                             <td>{{ $comic->description }}</td>
-                            <td><img src="{{ $comic->thumb }}" width="40"></td>
+                            {{-- <td><img src="{{ $comic->thumb }}" width="40"></td> --}}
+                            <td><img src="{{ asset('storage/' . $comic->thumb) }}" width="40"></td>
                             <td>{{ $comic->price }}</td>
                             <td>{{ $comic->series }}</td>
                             <td>{{ $comic->sale_date }}</td>
                             <td>{{ $comic->type }}</td>
                             <td>{{ $comic->artists }}</td>
                             <td>{{ $comic->writers }}</td>
-                            <td>View/Edit/Delete</td>
+                            <td><a class="btn btn-primary" href="{{route('comics.show', $comic->id)}}">View</a>
+                              Edit/Delete
+                           </td>
                         </tr>
                     @endforeach
 

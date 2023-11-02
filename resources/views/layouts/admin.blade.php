@@ -10,7 +10,10 @@
 <body class="bg-dark text-white">
 
    <header class="container mt-3">
-      <h3>Admin</h3>
+      <nav class="nav navbar-dark bg-dark shadow-lg align-items-center">
+         <h3>Admin</h3>
+         <a class="nav-link" href="{{route('comics.index')}}">Comics</a>
+      </nav>
    </header>
 
    <main>
