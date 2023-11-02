@@ -6,6 +6,8 @@
     <div class="container">
         <h6 class="my-4">Show all comics</h6>
 
+        <a class="btn btn-primary" href="{{route('comics.create')}}">Add Comic</a>
+
         <div class="table-responsive">
             <table class="table table-dark">
                 <thead>
