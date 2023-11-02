@@ -17,7 +17,6 @@ class PageController extends Controller
    }
 
    function comics(){
-      dd(Comic::all());
-      return view('comics');
+      return view('comics', ['comics' => Comic::all()]);
    }
 }
