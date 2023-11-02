@@ -39,8 +39,10 @@
                             <td>{{ $comic->type }}</td>
                             <td>{{ $comic->artists }}</td>
                             <td>{{ $comic->writers }}</td>
-                            <td><a class="btn btn-primary" href="{{route('comics.show', $comic->id)}}">View</a>
-                              Edit/Delete
+                            <td>
+                              <a class="btn btn-primary mb-2" href="{{route('comics.show', $comic->id)}}">View</a>
+                              <a class="btn btn-warning mb-2" href="{{route('comics.edit', $comic->id)}}">Edit</a>
+                              Delete
                            </td>
                         </tr>
                     @endforeach
