@@ -22,7 +22,11 @@
             </div>
 
             <div class="mb-3 d-flex">
-                <img width="100" class="me-3" src="{{asset('storage/' . $comic->thumb)}}">
+                @if (str_contains($comic->thumb, 'https://'))
+                    <td><img src="{{ $comic->thumb }}" width="100"></td>
+                @else
+                    <td><img src="{{ asset('storage/' . $comic->thumb) }}" width="100"></td>
+                @endif
                 <label for="thumb" class="form-label">Choose file</label>
                 <input type="file" class="form-control" name="thumb" id="thumb">
             </div>

@@ -25,8 +25,11 @@
                     <tr>
                         <td>{{ $comic->title }}</td>
                         <td>{{ $comic->description }}</td>
-                        {{-- <td><img src="{{ $comic->thumb }}" width="40"></td> --}}
-                        <td><img src="{{ asset('storage/' . $comic->thumb) }}" width="40"></td>
+                        @if (str_contains($comic->thumb, 'https://'))
+                            <td><img src="{{ $comic->thumb }}" width="40"></td>
+                        @else
+                            <td><img src="{{ asset('storage/' . $comic->thumb) }}" width="40"></td>
+                        @endif
                         <td>{{ $comic->price }}</td>
                         <td>{{ $comic->series }}</td>
                         <td>{{ $comic->sale_date }}</td>
