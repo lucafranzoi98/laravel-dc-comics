@@ -42,7 +42,7 @@ class ComicController extends Controller
       $new_comic->price = $request->price;      
       $new_comic->save();
 
-      return to_route('comics.index');
+      return to_route('comics.index')->with('message', 'Comic created successfully!');
    }
 
    /**
@@ -78,7 +78,7 @@ class ComicController extends Controller
       }
 
       $comic->update($data);
-      return to_route('comics.index');
+      return to_route('comics.index')->with('message', 'Comic updated successfully!');
    }
 
    /**
@@ -86,6 +86,10 @@ class ComicController extends Controller
     */
    public function destroy(Comic $comic)
    {
-      //
+      if (!is_null($comic->thumb)) {
+        Storage::delete($comic->thumb);
+      }
+      $comic->delete();
+      return to_route('comics.index')->with('message', 'Comic deleted successfully!');
    }
 }

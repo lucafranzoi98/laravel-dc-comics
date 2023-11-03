@@ -16,7 +16,7 @@
 
             <div class="mb-3">
                 <label for="price" class="form-label">Price</label>
-                <input type="text" class="form-control" name="price" id="price" aria-describedby="helpId"
+                <input type="number" class="form-control" name="price" id="price" aria-describedby="helpId"
                     placeholder="Price">
             </div>
 
