@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($comics as $comic)
+                    @forelse ($comics as $comic)
                         <tr>
                             <td>{{ $comic->id }}</td>
                             <td>{{ $comic->title }}</td>
@@ -38,7 +38,7 @@
                                 <td><img src="{{ asset('storage/' . $comic->thumb) }}" width="40"></td>
                             @endif
 
-                            <td>{{ $comic->price }}</td>
+                            <td>${{ $comic->price }}</td>
                             <td>{{ $comic->series }}</td>
                             <td>{{ $comic->sale_date }}</td>
                             <td>{{ $comic->type }}</td>
@@ -50,8 +50,9 @@
                                 Delete
                             </td>
                         </tr>
-                    @endforeach
-
+                    @empty
+                        <p class="mt-3">No comics yet</p>
+                    @endforelse
                 </tbody>
             </table>
         </div>

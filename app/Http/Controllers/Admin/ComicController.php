@@ -78,7 +78,7 @@ class ComicController extends Controller
       }
 
       $comic->update($data);
-      return to_route('comics.show', $comic);
+      return to_route('comics.index');
    }
 
    /**
