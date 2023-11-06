@@ -35,9 +35,10 @@
                 </thead>
                 <tbody>
                     @forelse ($comics as $comic)
-                        <tr>
+                        <tr class="@if ($comic->trashed()) text-decoration-line-through @endif">
                             <td>{{ $comic->id }}</td>
-                            <td>{{ $comic->title }}</td>
+                            <td>{{ $comic->title }}
+                            </td>
                             <td>{{ $comic->description }}</td>
 
                             @if (str_contains($comic->thumb, 'https://'))
