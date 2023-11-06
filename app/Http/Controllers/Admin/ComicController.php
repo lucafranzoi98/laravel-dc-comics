@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\StoreComicRequest;
 use App\Http\Requests\UpdateComicRequest;
+use Illuminate\Support\Facades\App;
 
 class ComicController extends Controller
 {
@@ -15,7 +16,7 @@ class ComicController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
+    {   
         return view('admin.comics.index', ['comics' => Comic::all()]);
     }
 
