@@ -6,6 +6,8 @@ use App\Models\Comic;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
+use App\Http\Requests\StoreComicRequest;
+use App\Http\Requests\UpdateComicRequest;
 
 class ComicController extends Controller
 {
@@ -28,17 +30,17 @@ class ComicController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreComicRequest $request)
     {
-        $data = $request->all();
+        $validated = $request->validated();
 
         if ($request->has('thumb')) {
             $file_path = Storage::put('comics_thumbs', $request->thumb);
-            $data['thumb'] = $file_path;
+            $validated['thumb'] = $file_path;
         }
 
-        $comic = Comic::create($data);
-        
+        $comic = Comic::create($validated);
+
         return to_route('comics.index')->with('message', 'Comic created successfully!');
     }
 
@@ -61,9 +63,9 @@ class ComicController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Comic $comic)
+    public function update(UpdateComicRequest $request, Comic $comic)
     {
-        $data = $request->all();
+        $validated = $request->validated();
         if ($request->has('thumb') && $comic->thumb) {
             // Delete previous img
             Storage::delete($comic->thumb);
@@ -71,10 +73,10 @@ class ComicController extends Controller
             // Save actual img
             $newThumb = $request->thumb;
             $path = Storage::put('comics_thumbs', $newThumb);
-            $data['thumb'] = $path;
+            $validated['thumb'] = $path;
         }
 
-        $comic->update($data);
+        $comic->update($validated);
         return to_route('comics.index')->with('message', 'Comic updated successfully!');
     }
 
